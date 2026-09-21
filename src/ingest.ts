@@ -72,7 +72,8 @@ export async function ingestHeartbeat(env: Env, terminalId: string, payload: Hea
   const ts = nowSec();
   const computerId = clampStr(payload.computer_id || terminalId, 80);
   const account = clampStr(payload.account, 32);
-  const interval = Math.max(5, Math.min(600, num(payload.report_interval, 30)));
+  // 本机/局域网版：允许 1 秒心跳（云端版仍建议 >=5，避免打爆配额）
+  const interval = Math.max(1, Math.min(600, num(payload.report_interval, 30)));
   const brokerOffset = Math.trunc(num(payload.broker_gmt_offset, Number.NaN));
   const hasBrokerOffset = Number.isFinite(brokerOffset) && Math.abs(brokerOffset) <= 14 * 3600;
   const inferred = inferQuoteDigitsFromPayload(payload);

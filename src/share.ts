@@ -53,8 +53,8 @@ export async function ensureShareTable(env: Env): Promise<void> {
 
 function clampShareRefreshSec(raw: unknown): number {
   const n = Math.floor(Number(raw));
-  if (!Number.isFinite(n)) return 30;
-  return Math.max(5, Math.min(600, n));
+  if (!Number.isFinite(n)) return 1;
+  return Math.max(1, Math.min(600, n));
 }
 
 function isCloudflareEdgeIp(ip: string): boolean {
@@ -204,7 +204,7 @@ export async function listShares(env: Env, terminalId: string): Promise<Response
     `SELECT id, terminal_id, created_at, expires_at, active, hours,
             COALESCE(show_calendar, 1) AS show_calendar,
             COALESCE(show_books, 1) AS show_books,
-            COALESCE(refresh_sec, 30) AS refresh_sec
+            COALESCE(refresh_sec, 1) AS refresh_sec
      FROM share_links WHERE terminal_id = ? ORDER BY created_at DESC LIMIT 50`,
   )
     .bind(terminalId)
@@ -307,7 +307,7 @@ async function loadActiveShareLink(
     `SELECT id, terminal_id, created_at, expires_at, active, hours,
             COALESCE(show_calendar, 1) AS show_calendar,
             COALESCE(show_books, 1) AS show_books,
-            COALESCE(refresh_sec, 30) AS refresh_sec
+            COALESCE(refresh_sec, 1) AS refresh_sec
      FROM share_links WHERE id = ?`,
   )
     .bind(id)

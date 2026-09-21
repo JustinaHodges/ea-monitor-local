@@ -129,7 +129,7 @@
                     <input id="share-hours" type="number" min="1" max="2160" step="1" value="24" />
                   </label>
                   <label>刷新间隔（秒）
-                    <input id="share-refresh-sec" type="number" min="5" max="600" step="1" value="30" />
+                    <input id="share-refresh-sec" type="number" min="1" max="600" step="1" value="1" />
                   </label>
                   <label class="check-row share-opt">
                     <input id="share-opt-calendar" type="checkbox" checked />
@@ -205,7 +205,7 @@
                 </div>
                 <div id="inst-day-table" class="table-wrap day-trades-table"></div>
               </div>
-              <p class="muted" id="inst-hint">EA 参数填：InpTerminalId、InpApiSecret；并设置 Magic、上报间隔、是否上传历史/日志。</p>
+              <p class="muted" id="inst-hint">EA 参数填：InpTerminalId、InpApiSecret；本机版心跳 InpIntervalSec 最短可设 1 秒。</p>
             </article>
           </div>
         </div>

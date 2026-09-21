@@ -2584,10 +2584,13 @@ $("modal").onclick = (ev) => {
 boot();
 loadAndApplyBackground();
 
+// 本机/局域网版：约 1 秒软刷新（与 1 秒心跳对齐）；后台标签页暂停
+const UI_REFRESH_MS = 1000;
 setInterval(() => {
+  if (document.visibilityState === "hidden") return;
   if ($("app").classList.contains("hidden")) return;
   const view = ["home", "instances", "pnl"].find((v) => !$(`view-${v}`).classList.contains("hidden"));
-  // 总览：10 秒只更新数据，不切页面、不跳滚动
+  // 总览：只更新数据，不切页面、不跳滚动
   if (view === "home") refreshHomeData({ soft: true }).catch(() => {});
   // soft：只更新数据，不滚页面、不重置正在编辑的表单
   if (view === "instances" && state.selectedId) {
@@ -2596,4 +2599,4 @@ setInterval(() => {
       .catch(() => {});
   }
   if (view === "pnl") loadPnlPage().catch(() => {});
-}, 10000);
+}, UI_REFRESH_MS);

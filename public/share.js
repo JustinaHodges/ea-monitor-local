@@ -643,12 +643,12 @@ let state = {
   uiBg: null,
   showDayTrades: true,
   showBooks: true,
-  refreshSec: 30,
+  refreshSec: 1,
   refreshTimer: null,
 };
 
 function applyShareAutoRefresh(sec) {
-  const n = Math.max(5, Math.min(600, Math.floor(Number(sec) || 30)));
+  const n = Math.max(1, Math.min(600, Math.floor(Number(sec) || 30)));
   // 间隔没变就别重建定时器，避免刷新节奏被重置
   if (state.refreshTimer && state.refreshSec === n) return;
   state.refreshSec = n;

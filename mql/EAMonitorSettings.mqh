@@ -220,7 +220,7 @@ void EAMon_ApplyInputs(
       if(StringLen(fVer) > 0) g_eaVersion = fVer;
       if(StringLen(fTag) > 0) g_strategyTag = fTag;
       g_magic = fMagic;
-      if(fInterval >= 5) g_intervalSec = fInterval;
+      if(fInterval >= 1) g_intervalSec = fInterval;
       g_uploadTrades = fTrades;
       g_uploadLogs = fLogs;
       g_reportAllMagic = fAll;

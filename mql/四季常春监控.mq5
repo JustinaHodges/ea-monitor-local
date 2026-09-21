@@ -20,7 +20,7 @@ input string InpStrategyTag    = "monitor";   // 策略标签
 input int    InpMagic          = 0;           // Magic（0=不限）
 
 input group "上报设置"
-input int    InpIntervalSec     = 30;  // 心跳间隔（秒，最短5）
+input int    InpIntervalSec     = 30;  // 心跳间隔（秒，本机版最短1）
 input int    InpBackfillMonths  = 2;   // 补传月数（2=本月+上月）
 input bool   InpUploadTrades    = true; // 上传成交记录
 input bool   InpUploadLogs      = true; // 上传日志
@@ -77,7 +77,7 @@ int OnInit()
       Print("EAMonitor: 请填写 监控后台地址 / 实例ID / 私钥（首次填写后会自动记住）");
       return INIT_PARAMETERS_INCORRECT;
    }
-   if(g_intervalSec < 5)
+   if(g_intervalSec < 1)
       return INIT_PARAMETERS_INCORRECT;
 
    EAMon_SaveSettingsFile();

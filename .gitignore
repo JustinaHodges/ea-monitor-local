@@ -8,6 +8,8 @@ server/.env
 server/.env.*
 !.env.example
 *.log
+server/_out.txt
+server/_err.txt
 .DS_Store
 Thumbs.db
 public/uploads/**

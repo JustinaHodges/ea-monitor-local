@@ -1,0 +1,14 @@
+node_modules
+.wrangler
+.dev.vars
+dist
+server/dist
+server/data
+server/.env
+server/.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+public/uploads/**
+!public/uploads/.gitkeep

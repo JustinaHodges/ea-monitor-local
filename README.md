@@ -1,10 +1,12 @@
 # 四季常春监控公益版 · 本机 / 局域网
 
-**赞助 Solana：** `JCZp9REG5AGhsr4NpkchzNdRvUwxJWNH4dhTzuGNX9xh`
+**如果对你有用赞助 Solana：** `JCZp9REG5AGhsr4NpkchzNdRvUwxJWNH4dhTzuGNX9xh`
 
 没有云服务器时，在自己电脑上跑监控站。同一 WiFi 下手机、其它电脑、局域网里的 MT5 也可以连。
 
 云服务器 / 域名版请用另一个仓库：[JustinaHodges/ea-monitor](https://github.com/JustinaHodges/ea-monitor)
+
+QQ:3271663089 t.me/ton66888
 
 ## 快速开始（Windows）
 

@@ -8,6 +8,8 @@
 
 云服务器 / 域名版请用另一个仓库：[JustinaHodges/ea-monitor](https://github.com/JustinaHodges/ea-monitor)
 
+个人博客：[摸摸小黄鱼](https://mt5.16881488.xyz/)
+
 QQ:3271663089 t.me/ton66888
 
 ## 快速开始（Windows）

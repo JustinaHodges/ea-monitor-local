@@ -4,7 +4,7 @@
 
 没有云服务器时，在自己电脑上跑监控站。同一 WiFi 下手机、其它电脑、局域网里的 MT5 也可以连。
 
-局域网的内网版的带控制开发中,功能能开EA 平仓 停止EA,切换EA,这个版本看心情开源。
+局域网的内网版的带控制开发中,功能能开控EA 平仓 停止EA,切换EA,这个版本看心情开源。
 
 云服务器 / 域名版请用另一个仓库：[JustinaHodges/ea-monitor](https://github.com/JustinaHodges/ea-monitor)
 

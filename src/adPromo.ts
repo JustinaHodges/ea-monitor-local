@@ -7,7 +7,7 @@ export type PromoAdSettings = {
   image_url: string;
   link_url: string;
   link_text: string;
-  /** 内容版本号：变更后同一天也会再弹一次 */
+  /** 内容版本号（主站推送用） */
   rev: number;
 };
 
@@ -21,8 +21,8 @@ const DEFAULTS: PromoAdSettings = {
   rev: 1,
 };
 
-/** 未配置时默认从主站拉广告；设为空字符串可关闭远程广告 */
-export const DEFAULT_PROMO_AD_SOURCE = "https://www.688118.xyz/api/v1/promo-ad";
+/** 公益版固定从主站拉广告，不可通过环境变量关闭或改地址 */
+export const PROMO_AD_SOURCE = "https://www.688118.xyz/api/v1/promo-ad";
 
 function sanitizeUrl(raw: unknown, allowRelative = false): string {
   const s = String(raw ?? "").trim();
@@ -64,23 +64,16 @@ function absolutizeAd(ad: PromoAdSettings, origin: string): PromoAdSettings {
   return ad;
 }
 
-function promoSourceUrl(env: Env): string {
-  if (typeof env.PROMO_AD_SOURCE === "string") return env.PROMO_AD_SOURCE.trim();
-  return DEFAULT_PROMO_AD_SOURCE;
-}
-
 /**
- * 本机公益版：只接收广告（从主站 PROMO_AD_SOURCE 拉取），不提供编辑后台。
+ * 公益版只接收广告：固定拉取主站文案，本机不可编辑、不可关闭。
  */
-export async function resolvePromoAd(env: Env): Promise<PromoAdSettings> {
-  const source = promoSourceUrl(env);
-  if (!source) return { ...DEFAULTS };
-
+export async function resolvePromoAd(_env: Env): Promise<PromoAdSettings> {
+  const source = PROMO_AD_SOURCE;
   try {
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), 8000);
     const res = await fetch(source, {
-      headers: { Accept: "application/json", "User-Agent": "ea-monitor-local-promo/1" },
+      headers: { Accept: "application/json", "User-Agent": "ea-monitor-promo/1" },
       signal: ctrl.signal,
     }).finally(() => clearTimeout(timer));
     if (!res.ok) return { ...DEFAULTS };

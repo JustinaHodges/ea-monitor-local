@@ -2583,37 +2583,8 @@ $("modal").onclick = (ev) => {
   if (ev.target.matches("[data-close], .modal-backdrop")) closeModal();
 };
 
-const PROMO_LS_KEY = "ea_promo_daily";
-
-function bjDateKey() {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Shanghai",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date());
-}
-
-function promoAlreadyShown(ad) {
-  try {
-    const raw = JSON.parse(localStorage.getItem(PROMO_LS_KEY) || "{}");
-    return raw.date === bjDateKey() && Number(raw.rev) === Number(ad.rev);
-  } catch {
-    return false;
-  }
-}
-
-function markPromoShown(ad) {
-  localStorage.setItem(
-    PROMO_LS_KEY,
-    JSON.stringify({ date: bjDateKey(), rev: Number(ad.rev) || 1 }),
-  );
-}
-
 function closePromoModal() {
-  const ad = window.__ea_promo_current;
   $("promo-modal")?.classList.add("hidden");
-  if (ad) markPromoShown(ad);
   window.__ea_promo_current = null;
 }
 
@@ -2642,12 +2613,12 @@ function openPromoModal(ad) {
   $("promo-modal").classList.remove("hidden");
 }
 
+/** 每次进入后台必弹（主站下发；点「知道了」才关，点遮罩关不了） */
 async function maybeShowPromoAd() {
   try {
     const ad = await api("/api/v1/promo-ad");
     if (!ad.enabled) return;
     if (!ad.title && !ad.body && !ad.image_url) return;
-    if (promoAlreadyShown(ad)) return;
     openPromoModal(ad);
   } catch {
     /* ignore */
@@ -2655,9 +2626,9 @@ async function maybeShowPromoAd() {
 }
 
 document.querySelectorAll("#promo-modal [data-promo-close]").forEach((el) => {
+  if (el.classList.contains("modal-backdrop")) return;
   el.addEventListener("click", () => closePromoModal());
 });
-$("promo-modal")?.querySelector(".modal-backdrop")?.addEventListener("click", () => closePromoModal());
 
 boot();
 loadAndApplyBackground();

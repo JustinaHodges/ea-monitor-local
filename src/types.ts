@@ -11,6 +11,11 @@ export interface Env {
   LICENSE_DOMAIN?: string;
   /** 签发/校验授权码的密钥（按域名派生，写进客户包） */
   LICENSE_SECRET?: string;
+  /**
+   * 从主站拉取广告弹窗，例如 https://www.688118.xyz/api/v1/promo-ad
+   * 空字符串 = 不拉远程广告；未设置则用默认主站地址
+   */
+  PROMO_AD_SOURCE?: string;
 }
 
 export interface PositionPayload {

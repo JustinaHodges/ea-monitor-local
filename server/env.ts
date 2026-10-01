@@ -18,6 +18,9 @@ export function createEnv(): Env {
     LICENSE_ENFORCE: process.env.LICENSE_ENFORCE,
     LICENSE_DOMAIN: process.env.LICENSE_DOMAIN,
     LICENSE_SECRET: process.env.LICENSE_SECRET,
+    // undefined = 用代码默认主站；显式空串 = 关闭远程广告
+    PROMO_AD_SOURCE:
+      process.env.PROMO_AD_SOURCE !== undefined ? process.env.PROMO_AD_SOURCE : undefined,
   };
 }
 

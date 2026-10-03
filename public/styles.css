@@ -875,6 +875,50 @@ html:not([data-theme="dark"]) .pnl-cal-day {
   font-weight: 400;
   color: var(--text);
 }
+.inst-share-contacts-label {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 8px;
+  font-size: .85rem;
+  color: var(--text-3);
+  font-weight: 600;
+}
+.inst-share-contacts-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.inst-share-contacts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+}
+.inst-share-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.inst-share-contact-row input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border-radius: var(--radius-md);
+  font-weight: 400;
+  color: var(--text);
+}
+.inst-share-contacts-hint {
+  font-size: .78rem;
+  font-weight: 400;
+}
+.btn-xs {
+  padding: 4px 10px;
+  font-size: .78rem;
+  line-height: 1.2;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
 .inst-edit-actions {
   grid-column: 1 / -1;
   display: flex;
@@ -1885,6 +1929,13 @@ html:not([data-theme="dark"]) .inst-stats .val {
   gap: 14px;
   flex-wrap: wrap;
 }
+.share-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 16px;
+  min-width: 0;
+}
 .share-intro-head h2 {
   margin: 0;
   font-size: 1.05rem;
@@ -2106,6 +2157,7 @@ html:not([data-theme="dark"]) .inst-stats .val {
   .grid-2 { grid-template-columns: 1fr; }
   .inst-grid { grid-template-columns: 1fr; }
   .inst-edit-grid { grid-template-columns: 1fr; }
+  .inst-share-contacts { grid-template-columns: 1fr; }
   .site-header-wrap, .site-frame { width: min(calc(100% - 12px), var(--content-max)); }
   .panel { padding: 14px 10px; }
   .cal-toolbar { gap: 6px; }
@@ -2208,3 +2260,27 @@ html:not([data-theme="dark"]) .inst-stats .val {
   .site-header-wrap, .site-frame { width: calc(100% - 8px); }
   .panel { padding: 12px 6px; }
 }
+
+/* 广告设置：正文等多行框只要轻微圆角，不要胶囊/椭圆 */
+#promo-admin-block input[type="text"],
+#promo-admin-block input[type="url"],
+#promo-admin-block textarea,
+#promo-body {
+  border-radius: 10px !important;
+  min-height: auto;
+}
+#promo-body {
+  min-height: 280px !important;
+  max-width: 720px;
+  width: 100%;
+  line-height: 1.55;
+  padding: 12px 14px !important;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+#promo-admin-block textarea,
+#promo-admin-block input[type="text"],
+#promo-admin-block input[type="url"] {
+  max-width: 720px;
+}
+
